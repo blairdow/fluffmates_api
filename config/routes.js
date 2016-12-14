@@ -4,11 +4,14 @@ var express = require('express'),
 // Require controllers.
 var petsController = require('../controllers/pets');
 var usersController = require('../controllers/users');
+var authController = require('../controllers/auth');
 
 router.get('/pets', petsController.petSearch)
 
 // users resource paths:
-router.get('/users',     usersController.index);
-router.get('/users/:id', usersController.show);
+router.post('/users', usersController.create)
+router.post('/login', 	 usersController.login);
+router.get('/users/:id', authController.isLoggedIn, usersController.show);
 
 module.exports = router;
+    
