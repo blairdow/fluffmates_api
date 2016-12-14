@@ -19,12 +19,12 @@ var login = function (req, res, next) {
     return false
   }
 
-  var payload = { email: req.body.email }
+  var payload;
 
   User.findOne({ email: req.body.email })
     .then(function (user) {
       if (user) {
-        payload._id = user._id
+        payload = user;
         return bcrypt.compare(req.body.password, user.password_digest)
       }
       else {
@@ -49,7 +49,7 @@ var show = function(req, res, next){
         res.status(403).json({ error: "Wrong user in token" })
         return false
     }
-  
+
     User.findById(req.params.id, function(err, user) {
         if (err) {
           res.json({message: 'Could not find user because ' + err});
@@ -67,7 +67,7 @@ var create = function(req, res, next){
         return false
       }
 
-      var payload = { email: req.body.email }
+      // var payload = { email: req.body.email }
 
       var newUser = new User(req.body)
       User.findOne({ email: newUser.email })
@@ -84,8 +84,7 @@ var create = function(req, res, next){
           return User.create(newUser)
         })
         .then(function (user) {
-          payload._id = user._id
-          return jwt.sign(payload, process.env.JWT_SECRET)
+          return jwt.sign(user, process.env.JWT_SECRET)
         })
         .then(token => res.json({ token: token }))
 }
