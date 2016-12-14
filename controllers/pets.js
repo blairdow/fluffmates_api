@@ -7,9 +7,13 @@ var petSearch = function(req, res, next) {
     var method = `pet.find`
     var animal = req.query.animal
     var zipCode = req.query.zipCode
-
-    var url = `${rootUrl}${method}?format=json&key=${key}&animal=${animal}&location=${zipCode}`
-
+    var url 
+    
+    if(!req.query.animal) {
+        url = `${rootUrl}${method}?format=json&key=${key}&location=${zipCode}`
+    }
+    else url = `${rootUrl}${method}?format=json&key=${key}&animal=${animal}&location=${zipCode}`
+    
     console.log('url', url)
 
     request(url, function(err, response, body) {
