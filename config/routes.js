@@ -12,6 +12,6 @@ router.get('/pets', petsController.petSearch)
 router.post('/users', usersController.create)
 router.post('/login', 	 usersController.login);
 router.get('/users/:id', authController.isLoggedIn, usersController.show);
+router.put('/users/:id',     usersController.update);
 
 module.exports = router;
-    

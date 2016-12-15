@@ -89,8 +89,34 @@ var create = function(req, res, next){
         .then(token => res.json({ token: token }))
 }
 
+var update = function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+
+        if (err) res.send(err);
+
+        // set the new user information if it exists in the request
+        if (req.body.name)        user.name        = req.body.name;
+        if (req.body.email)       user.email       = req.body.email;
+        if (req.body.address)     user.address     = req.body.address;
+        if (req.body.city)        user.city        = req.body.city;
+        if (req.body.state)       user.state       = req.body.state;
+        if (req.body.zip_code)    user.zip_code    = req.body.zip_code;
+        if (req.body.chosenPets)  user.chosenPets  = req.body.chosenPets;
+
+
+        // save the user
+        user.save(function(err) {
+          if (err) res.send(err);
+
+          // return a message
+          res.json({ message: 'User updated!' });
+        });
+  });
+}
+
 module.exports = {
     show:  show,
     create: create,
-    login: login
+    login: login,
+    update: update
 };
