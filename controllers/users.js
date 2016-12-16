@@ -63,6 +63,7 @@ var create = function(req, res, next){
       var newUser = new User(req.body)
       User.findOne({ email: newUser.email })
         .then(function (user) {
+          console.log(req.body)
           if (user) {
             res.json({ error: "User exists" })
           }
