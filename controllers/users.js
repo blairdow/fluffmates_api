@@ -32,9 +32,7 @@ var login = function (req, res, next) {
     .then(function (token) {
       res.json({ token: token })
     })
-    .catch(function(err) {
-      res.json({success: false, error: err});
-    })
+
 }
 
 var show = function(req, res, next){
