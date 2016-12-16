@@ -74,9 +74,7 @@ var create = function(req, res, next){
           }
           else {
             try {
-              return bcrypt.hash(req.body.password, 10, function (err) {
-                res.json({ error: err })
-              })
+              return bcrypt.hash(req.body.password, 10)
             } catch (err) {
               res.json({ error: err })
             }
