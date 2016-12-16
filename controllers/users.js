@@ -16,7 +16,11 @@ var login = function (req, res, next) {
       if (user) {
         payload = user;
         try {
-          match = bcrypt.compareSync(req.body.password, user.password_digest)
+          match = bcrypt.compareSync(req.body.password, user.password_digest, function () {
+              console.log('one')
+          }, function () {
+            console.log('two')
+          })
         } catch (err) {
           res.json({ error: err })
         }
