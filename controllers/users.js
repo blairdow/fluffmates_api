@@ -15,7 +15,12 @@ var login = function (req, res, next) {
     .then(function (user) {
       if (user) {
         payload = user;
-        return bcrypt.compare(req.body.password, user.password_digest)
+        try {
+          match = bcrypt.compareSync(req.body.password, user.password_digest)
+        } catch (err) {
+          res.json({ error: err })
+        }
+        return match
       }
       else {
         res.json({ error: "User does not exist" })
