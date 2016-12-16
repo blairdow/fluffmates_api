@@ -3,16 +3,6 @@ var User = require("../models/user");
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
 
-//var index = function(req, res, next){
-//  User.find({}, function(err, users) {
-//    if (err) {
-//      res.json({message: err});
-//    } else {
-//      res.render('users/index', {users: users});
-//    }
-//  });
-//};
-
 var login = function (req, res, next) {
   if (!req.body.password || !req.body.email) {
     res.json({ error: "Email and password must be set"})
