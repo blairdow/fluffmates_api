@@ -68,7 +68,11 @@ var create = function(req, res, next){
             res.json({ error: "User exists" })
           }
           else {
-            return bcrypt.hash(req.body.password, 10)
+            try {
+              return bcrypt.hash(req.body.password, 10)
+            } catch (err) {
+              res.json({ error: err })
+            }
           }
         })
         .then(function (hash) {
