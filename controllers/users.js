@@ -15,16 +15,7 @@ var login = function (req, res, next) {
     .then(function (user) {
       if (user) {
         payload = user;
-        try {
-          match = bcrypt.compareSync(req.body.password, user.password_digest, function () {
-              console.log('one')
-          }, function () {
-            console.log('two')
-          })
-        } catch (err) {
-          res.json({ error: err })
-        }
-        return match
+        return bcrypt.compareSync(req.body.password, user.password_digest)
       }
       else {
         res.json({ error: "User does not exist" })
@@ -40,6 +31,9 @@ var login = function (req, res, next) {
     })
     .then(function (token) {
       res.json({ token: token })
+    })
+    .catch(function (err) {
+      console.log(err)
     })
 
 }
