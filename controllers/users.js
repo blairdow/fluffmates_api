@@ -101,8 +101,7 @@ var update = function(req, res) {
         if (req.body.city)        user.city        = req.body.city;
         if (req.body.state)       user.state       = req.body.state;
         if (req.body.zip_code)    user.zip_code    = req.body.zip_code;
-        if (req.body.chosenPets)  user.chosenPets  = req.body.chosenPets;
-
+        if (req.body.chosenPets)  user.chosenPets  = req.body.chosenPets
 
         // save the user
         user.save(function(err) {

@@ -2,7 +2,11 @@ var mongoose = require('mongoose'),
     debug    = require('debug')('app:models');
 
 var chosenPetsSchema = new mongoose.Schema({
-    chosenPets: []
+    name: String,
+    img: String,
+    description: String,
+    pet_id: String,
+    chosen: Boolean
 })
 
 var userSchema = new mongoose.Schema({
@@ -19,4 +23,3 @@ var userSchema = new mongoose.Schema({
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;
-

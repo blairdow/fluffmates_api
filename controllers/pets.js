@@ -7,23 +7,25 @@ var petSearch = function(req, res, next) {
     var method = `pet.find`
     var animal = req.query.animal
     var zipCode = req.query.zipCode
-    var url 
-    
-    if(!req.query.animal) {
+    var url
+
+    if(!req.query.animal && !req.query.zipCode){
+      url = `${rootUrl}${method}?format=json&key=${key}`
+    }
+    else if(!req.query.animal) {
         url = `${rootUrl}${method}?format=json&key=${key}&location=${zipCode}`
     }
     else url = `${rootUrl}${method}?format=json&key=${key}&animal=${animal}&location=${zipCode}`
-    
+
     console.log('url', url)
 
     request(url, function(err, response, body) {
-        if(!err && response.statusCode == 200) {
-            console.log('response', JSON.parse(body).petfinder.pets.pet[1])
-            var pets = JSON.parse(body).petfinder.pets.pet
-            res.json(pets)
-        }
-        else {
-            console.log(err)
+        try {
+          var pets = JSON.parse(body).petfinder.pets.pet
+          res.json(pets)}
+        catch (err) {
+          res.status(500).json({error: err})
+          console.log(err)
         }
     })
 };
@@ -31,4 +33,3 @@ var petSearch = function(req, res, next) {
 module.exports = {
   petSearch: petSearch
 };
-
