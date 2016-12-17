@@ -94,7 +94,6 @@ var create = function(req, res, next){
 
 var update = function(req, res) {
   User.findById(req.params.id, function(err, user) {
-      console.log('req.body', req.body)
         if (err) res.send(err);
 
         // set the new user information if it exists in the request
@@ -105,7 +104,6 @@ var update = function(req, res) {
         if (req.body.state)       user.state       = req.body.state;
         if (req.body.zip_code)    user.zip_code    = req.body.zip_code;
         if (req.body.chosenPets)  user.chosenPets  = req.body.chosenPets
-        console.log('user', user)
         // save the user
         user.save(function(err) {
           if (err) res.send(err);
