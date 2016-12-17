@@ -15,8 +15,7 @@ var login = function (req, res, next) {
     .then(function (user) {
       if (user) {
         payload = user;
-        console.log(req.body.password)
-        console.log(user.password_digest)
+
         return bcrypt.compareSync(req.body.password, user.password_digest)
       }
       else {
