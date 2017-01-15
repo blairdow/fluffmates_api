@@ -83,7 +83,6 @@ var create = function(req, res, next){
         })
         .then(function (hash) {
           newUser.password_digest = hash
-          res.json({ message: 'User Created' })
           return User.create(newUser)
         }, function (err) {
           res.json({ error: err })
