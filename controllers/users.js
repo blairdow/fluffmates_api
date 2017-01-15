@@ -64,22 +64,26 @@ var create = function(req, res, next){
       }
 
       var newUser = new User(req.body)
+      
+      //check if user already exists
       User.findOne({ email: newUser.email })
         .then(function (user) {
           console.log(req.body)
           if (user) {
-            res.json({ error: "User exists" })
+            res.json({ error: "User exists", success: false })
           }
           else {
-            try {
-              return bcrypt.hash(req.body.password, 10)
-            } catch (err) {
-              res.json({ error: err })
-            }
+//            try {
+//              return bcrypt.hash(req.body.password, 10)
+//            } catch (err) {
+//              res.json({ error: err })
+//            }
+            return bcrypt.hash(req.body.password, 10)
           }
         })
         .then(function (hash) {
           newUser.password_digest = hash
+          res.json({ message: 'User Created' })
           return User.create(newUser)
         }, function (err) {
           res.json({ error: err })
