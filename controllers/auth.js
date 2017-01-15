@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken')
 
+//function to check if user is logged in
 function isLoggedIn (req, res, next) {
     var token = req.body.token || req.params.token || req.query.token || req.cookies.token;
     

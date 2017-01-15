@@ -3,6 +3,7 @@ var User = require("../models/user");
 var bcrypt = require('bcrypt')
 var jwt = require('jsonwebtoken')
 
+//function to login in user user json web tokens and bcrypt
 var login = function (req, res, next) {
   if (!req.body.password || !req.body.email) {
     res.json({ error: "Email and password must be set"})
@@ -61,8 +62,6 @@ var create = function(req, res, next){
         res.json({ error: "Email and password must be set"})
         return false
       }
-
-      // var payload = { email: req.body.email }
 
       var newUser = new User(req.body)
       User.findOne({ email: newUser.email })

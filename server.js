@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 // Routing layers: favicon, static assets, dynamic routes, or 404…
 
 // Routes to static assets. Uncomment below if you have a favicon.
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Useful for debugging the state of requests.
 app.use(debugReq);

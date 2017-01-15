@@ -1,5 +1,4 @@
 var _ = require('lodash');
-// require('dotenv').load()
 
 var localEnvVars = {
   TITLE:      'fluffmates_api',

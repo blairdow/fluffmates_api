@@ -6,6 +6,8 @@ var petsController = require('../controllers/pets');
 var usersController = require('../controllers/users');
 var authController = require('../controllers/auth');
 
+//route to get data from Petfinder API
+//called by front end using user's search inputs
 router.get('/pets', petsController.petSearch)
 
 // users resource paths:
