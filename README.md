@@ -1,6 +1,6 @@
 # FluffMates Backend
 ##About
-A **Node.js + Express headless API** that is the backend for my Ionic mobile app, **[FluffMates](https://quiet-woodland-25469.herokuapp.com/)**. Built to follow Restful API specs. 
+A **Node.js + Express headless API** that is the backend for my Ionic mobile app, **[FluffMates](https://fluffmates.herokuapp.com/)**. Built to follow Restful API specs. 
 
 > The FluffMates app is designed to let users search for adoptable pets in their area, save their three favorites, and them have them delivered to their home, so the user can adopt their favorite pet of the three. 
 
